@@ -6,12 +6,16 @@
       "destination": "/api/index.ts"
     },
     {
+      "source": "/trpc/(.*)",
+      "destination": "/api/index.ts"
+    },
+    {
       "source": "/manus-storage/(.*)",
       "destination": "/api/index.ts"
     },
     {
-      "source": "/(.*)",
-      "destination": "/api/index.ts"
+      "source": "/((?!api|trpc|assets|favicon.ico|manus-storage).* )",
+      "destination": "/index.html"
     }
   ],
   "framework": "vite",
