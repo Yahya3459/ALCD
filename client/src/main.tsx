@@ -54,6 +54,7 @@ const trpcClient = trpc.createClient({
   links: [
     httpBatchLink({
       url: "/api/trpc",
+      // @ts-ignore
       transformer: superjson,
       headers() {
         // Preview auto-login fallback: when the browser blocks iframe cookies
