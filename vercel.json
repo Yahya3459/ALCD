@@ -16,9 +16,8 @@
       "destination": "/api/server.ts"
     },
     {
-      "source": "/(.*)",
-      "destination": "/index.html",
-      "check": true
+      "source": "/((?!api/|trpc/|manus-storage/).*)",
+      "destination": "/index.html"
     }
   ]
 }
