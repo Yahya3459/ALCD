@@ -48,6 +48,13 @@ export async function upsertUser(user: InsertUser): Promise<void> {
   } catch (error) { console.error("[Database] Failed to upsert user:", error); throw error; }
 }
 
+export async function getUserByOpenId(openId: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
 // ─── Admin Users ──────────────────────────────────────────────────────────────
 
 export async function getAdminByUsername(username: string) {
