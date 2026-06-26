@@ -14,7 +14,7 @@
       "destination": "/api/index.ts"
     },
     {
-      "source": "/((?!api|trpc|assets|favicon.ico|manus-storage).* )",
+      "source": "/((?!api|trpc|assets|favicon.ico|manus-storage).*)",
       "destination": "/index.html"
     }
   ],
