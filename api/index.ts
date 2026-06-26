@@ -34,4 +34,9 @@ app.use(
   })
 );
 
+// Fallback for API routes
+app.use("/api/*", (req, res) => {
+  res.status(404).json({ error: "API route not found" });
+});
+
 export default app;
