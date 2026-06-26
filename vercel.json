@@ -2,38 +2,22 @@
   "version": 2,
   "buildCommand": "pnpm build",
   "outputDirectory": "dist/public",
-  "functions": {
-    "api/**": {
-      "runtime": "nodejs20.x"
-    }
-  },
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/api/index.ts"
+      "destination": "/api/server.ts"
     },
     {
       "source": "/trpc/(.*)",
-      "destination": "/api/index.ts"
+      "destination": "/api/server.ts"
     },
     {
       "source": "/manus-storage/(.*)",
-      "destination": "/api/index.ts"
+      "destination": "/api/server.ts"
     },
     {
       "source": "/(.*)",
       "destination": "/index.html"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/index.html",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/html"
-        }
-      ]
     }
   ]
 }
