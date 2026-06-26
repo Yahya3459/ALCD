@@ -8,11 +8,9 @@ import { registerStorageProxy } from "../server/_core/storageProxy";
 import { registerUploadRoutes } from "../server/upload";
 import { appRouter } from "../server/routers";
 import { createContext } from "../server/_core/context";
-import { serveStatic } from "../server/_core/vite";
 
 const app = express();
 
-// Configure body parser with larger size limit for file uploads
 app.use(cors({
   origin: true,
   credentials: true,
@@ -35,8 +33,5 @@ app.use(
     createContext,
   })
 );
-
-// Serve static files for the client application
-serveStatic(app);
 
 export default app;
