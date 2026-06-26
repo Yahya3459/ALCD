@@ -1,5 +1,18 @@
 {
   "version": 2,
+  "builds": [
+    {
+      "src": "api/index.ts",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist/public"
+      }
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/(.*)",
@@ -17,9 +30,5 @@
       "source": "/((?!api|trpc|assets|favicon.ico|manus-storage).*)",
       "destination": "/index.html"
     }
-  ],
-  "framework": "vite",
-  "installCommand": "npm install --legacy-peer-deps",
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist/public"
+  ]
 }
