@@ -3,9 +3,9 @@ import bcrypt from "bcryptjs";
 import { SignJWT, jwtVerify } from "jose";
 import { z } from "zod";
 import { COOKIE_NAME } from "@shared/const";
-import { getSessionCookieOptions } from "./_core/cookies";
-import { systemRouter } from "./_core/systemRouter";
-import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
+import { getSessionCookieOptions } from "./_core/cookies.js";
+import { systemRouter } from "./_core/systemRouter.js";
+import { publicProcedure, protectedProcedure, router } from "./_core/trpc.js";
 import {
   createRegistration,
   getRegistrations,
@@ -24,8 +24,8 @@ import {
   updateAdminUser,
   deleteAdminUser,
   getDb,
-} from "./db";
-import { sendRegistrationNotification } from "./email";
+} from "./db.js";
+import { sendRegistrationNotification } from "./email.js";
 
 // ─── Admin JWT ────────────────────────────────────────────────────────────────
 const ADMIN_COOKIE = "alc_admin_token";

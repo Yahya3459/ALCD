@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { storagePut } from "./storage";
+import { storagePut } from "./storage.js";
 
 export function registerUploadRoutes(app: express.Application) {
   // معالج رفع الملفات - نستخدم express.raw لمعالجة البيانات الثنائية مباشرة

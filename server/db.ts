@@ -1,7 +1,7 @@
 import { eq, desc, like, or, and, SQL } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-import { InsertUser, users, registrations, adminUsers, InsertRegistration, Registration, certificateRequests, InsertCertificateRequest, CertificateRequest } from "../drizzle/schema";
+import { InsertUser, users, registrations, adminUsers, InsertRegistration, Registration, certificateRequests, InsertCertificateRequest, CertificateRequest } from "../drizzle/schema.js";
 
 let _db: any = null;
 
