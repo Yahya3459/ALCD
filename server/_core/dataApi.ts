@@ -52,13 +52,30 @@ export async function callDataApi(
     );
   }
 
-  const payload = await response.json().catch(() => ({}));
-  if (payload && typeof payload === "object" && "jsonData" in payload) {
+  // Read raw text first so we can inspect non-JSON error pages or plain-text responses.
+  const raw = await response.text().catch(() => "");
+
+  // Try to parse JSON from the raw text. If parsing fails, log the raw text (truncated)
+  // and return the raw string so callers can inspect the real server response.
+  let parsed: unknown;
+  try {
+    parsed = raw ? JSON.parse(raw) : {};
+  } catch (e) {
+    // Non-JSON response (could be HTML or plain text). Log first 1000 chars to help debugging.
     try {
-      return JSON.parse((payload as Record<string, string>).jsonData ?? "{}");
+      console.error("[DataAPI] Non-JSON response (first 1000 chars):", raw.slice(0, 1000));
+    } catch {}
+    return raw;
+  }
+
+  // Maintain existing jsonData handling: some backends wrap the real payload in { jsonData: string }
+  if (parsed && typeof parsed === "object" && "jsonData" in (parsed as Record<string, unknown>)) {
+    try {
+      return JSON.parse((parsed as Record<string, string>).jsonData ?? "{}");
     } catch {
-      return (payload as Record<string, unknown>).jsonData;
+      return (parsed as Record<string, unknown>).jsonData;
     }
   }
-  return payload;
+
+  return parsed;
 }
